@@ -5,26 +5,31 @@ public class Circle2D{
 	double y;
 	double radius;
 
+	// default constructor for Circle2D
 	public Circle2D(){
 		this.x = 0;
 		this.y = 0;
 		this.radius = 1;
 	}
 
+	// constructor with values
 	public Circle2D(double x, double y, double radius){
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
 	}
 
+	// X getter
 	public double getX(){
 		return this.x;
 	}
 
+	// X setter
 	public void setX(double x){
 		this.x = x;
 	}
 
+	// you get the picture
 	public double getY(){
 		return this.y;
 	}
@@ -56,7 +61,7 @@ public class Circle2D{
 	}
 
 	public boolean contains(double x, double y){
-		// if the difference between the point and the center is less than the radius
+		// true the difference between the point and the center is less than the radius
 		return Math.abs(x - this.x) <= this.radius &&
 			Math.abs(y - this.y) <= this.radius;
 	}
@@ -82,7 +87,7 @@ public class Circle2D{
 	}
 
 	public boolean contains(Circle2D o){
-		// this right must be greater than that right
+		// this right must be greater than that right and
 		// this left must be greater than that left etc.
 		return this.rightX() >= o.rightX() &&
 			this.leftX() <= o.rightX() &&
@@ -105,12 +110,14 @@ public class Circle2D{
 
 			//or
 
-			//one of the circles contains the other
+			// one of the circles contains the other
 			this.contains(o) ||
 			o.contains(this);
 	}
 
+	// this method is unused lmao
 	private static double distance(double x1, double y1, double x2, double y2){
+		// distance formula
 		return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 	}
 }
