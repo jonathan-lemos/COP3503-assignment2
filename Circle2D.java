@@ -96,26 +96,10 @@ public class Circle2D{
 	}
 
 	public boolean overlaps(Circle2D o){
-		// this right must overlap other circle's left
-		return ((this.rightX() >= o.leftX() &&
-				// but the circle can't be completely off to the right of the other circle
-				this.leftX() <= o.rightX()) ||
-
-			//or
-
-			// this top must overlap the other circle's bot
-			(this.topY() >= o.botY() &&
-			// but this circle can't be completely above the other circle's top
-			 this.botY() <= o.topY())) ||
-
-			//or
-
-			// one of the circles contains the other
-			this.contains(o) ||
-			o.contains(this);
+		// if the distance from this circle's center to the other circle's center is less than this radius + that radius
+		return Circle2D.distance(this.x, this.y, o.x, o.y) < this.radius + o.radius;
 	}
 
-	// this method is unused lmao
 	private static double distance(double x1, double y1, double x2, double y2){
 		// distance formula
 		return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
