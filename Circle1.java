@@ -1,5 +1,6 @@
 import java.lang.IllegalArgumentException;
 
+// why use "Comparable<Circle1>" when you can use "Comparable" and disregard compile-time type safety?
 class Circle1 extends GeometricObject1 implements Comparable{
 	protected double radius;
 
@@ -30,11 +31,13 @@ class Circle1 extends GeometricObject1 implements Comparable{
 		this.radius = radius;
 	}
 
+	@Override
 	public double findArea(){
 		// a = pi r squared
 		return this.radius * this.radius * Math.PI;
 	}
 
+	@Override
 	public double findPerimeter(){
 		// c = 2 pi r
 		return this.radius * 2.0 * Math.PI;
@@ -68,19 +71,22 @@ class Circle1 extends GeometricObject1 implements Comparable{
 		}
 	}
 
+	// compile-time type safety is for suckers
 	public static Circle1 max(Comparable o1, Comparable o2){
-		// both have to be instances of Circle1
-		if (!(o1 instanceof Circle1) ||
-				!(o2 instanceof Circle1)){
-			throw new IllegalArgumentException("Both operands muct be instances of Circle1");
-				}
-		// casts to make the dream work
+		// because max(Circle1, Circle1) would have made too much sense, we have to check if these Comparables are instances of Circle1
+		if (!(o1 instanceof Circle1) || !(o2 instanceof Circle1)){
+			throw new IllegalArgumentException("both parameters must be instances of Circle1");
+		}
 		Circle1 c1 = (Circle1)o1;
 		Circle1 c2 = (Circle1)o2;
-
-		if (c1.radius > c2.radius){
+		if (c1.compareTo(c2) > 0){
 			return c1;
 		}
 		return c2;
+	}
+
+	@Override
+	public String toString() {
+		return "Circle:" + " radius: " + this.radius + " color: " + this.color + " weight: " + this.weight;
 	}
 }

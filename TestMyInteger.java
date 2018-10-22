@@ -13,8 +13,8 @@ public class TestMyInteger {
 		System.out.println("n1 is equal to 5? " + n1.equals(5));
 
 
-		System.out.println("24 is even? " + MyInteger.isEven(n2));
-		System.out.println("24 is odd? " + MyInteger.isOdd(n2));
-		System.out.println("24 is prime? " + MyInteger.isPrime(n2));
+		System.out.println("n2 is even? " + MyInteger.isEven(n2));
+		System.out.println("n2 is odd? " + MyInteger.isOdd(n2));
+		System.out.println("n2 is prime? " + MyInteger.isPrime(n2));
 	}
 }
